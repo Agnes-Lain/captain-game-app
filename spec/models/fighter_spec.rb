@@ -84,7 +84,7 @@ RSpec.describe "Fighter", :type => :model do
 
    it "attack_points under range is not a valid value" do
     attributes = valid_attributes
-    attributes[:attack_points] = 2
+    attributes[:attack_points] = 1
     fighter = Fighter.new(attributes)
     expect(fighter).not_to be_valid
   end

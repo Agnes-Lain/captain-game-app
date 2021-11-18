@@ -10,7 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_11_17_142212) do
+ActiveRecord::Schema.define(version: 2021_11_18_133350) do
+
+  create_table "combats", force: :cascade do |t|
+    t.integer "fighter_id", null: false
+    t.integer "adversary_id", null: false
+    t.integer "result"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["adversary_id"], name: "index_combats_on_adversary_id"
+    t.index ["fighter_id"], name: "index_combats_on_fighter_id"
+  end
 
   create_table "fighters", force: :cascade do |t|
     t.string "name"
@@ -18,6 +28,8 @@ ActiveRecord::Schema.define(version: 2021_11_17_142212) do
     t.integer "attack_points"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "img_url", default: "https://avatarfiles.alphacoders.com/161/thumb-161319.jpg"
   end
 
+  add_foreign_key "combats", "fighters"
 end

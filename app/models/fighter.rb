@@ -1,4 +1,5 @@
 class Fighter < ApplicationRecord
+  has_many :combats
   validates :name, :life_points, :attack_points, presence: true
   validates :life_points, :attack_points, numericality: { only_integer: true }
   validates :life_points, inclusion: { in: 30..50 }
@@ -12,8 +13,9 @@ class Fighter < ApplicationRecord
     enimy.life_points -= rand(0..self.attack_points)
   end
 
-  def figher_info
+  def fighter_info
     "#{name}: Life: #{life_points}, Attack: #{attack_points}"
   end
+
 end
 
