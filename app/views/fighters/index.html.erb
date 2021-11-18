@@ -1,0 +1,8 @@
+<div class="container">
+  <% @fighters.each do |fighter| %>
+    <div class="small-card">
+      <img src=<%= fighter.img_url  %> alt="">
+      <h4><%= fighter.fighter_info %></h4>
+    </div>
+  <% end %>
+</div>
