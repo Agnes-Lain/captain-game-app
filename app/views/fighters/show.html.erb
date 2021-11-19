@@ -1,0 +1,14 @@
+<div class="container my-5">
+  <h2>Fighter Information</h2>
+  <div class="my-3">
+    <%= image_tag @fighter.img_url,class:"", width:300, height: 300, alt: @fighter.name %>
+  </div>
+  <div class="my-3">
+    <h4>Name: <%= @fighter.name %></h4>
+    <h5><i class="fas fa-heart"></i> Life Points : <%= @fighter.life_points %></h5>
+    <h5><i class="fas fa-skull-crossbones"></i> Attack Points : <%= @fighter.attack_points %></h5>
+    <%= link_to "Edit", edit_fighter_path(@fighter) %>
+    <%= link_to "Delete", fighter_path(@fighter), method: :delete, data: { confirm: "Are you sure?" } %>
+    <%= link_to "Back to Arena", fighters_path %>
+  </div>
+</div>

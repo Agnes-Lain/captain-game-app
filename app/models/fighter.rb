@@ -10,11 +10,15 @@ class Fighter < ApplicationRecord
   end
 
   def hit(enimy)
-    enimy.life_points -= rand(0..self.attack_points)
+    enimy.life_points -= one_attack_point
   end
 
   def fighter_info
-    "#{name}: Life: #{life_points}, Attack: #{attack_points}"
+    "#{name} - Life: #{life_points} / Attack: #{attack_points}"
+  end
+
+  def one_attack_point
+    rand(0..self.attack_points)
   end
 
 end

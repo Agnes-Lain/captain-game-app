@@ -11,7 +11,8 @@ if defined?(FightersController)
       {
         name: "MeatBoy",
         life_points: 35,
-        attack_points: 5
+        attack_points: 5,
+        img_url: "https://avatarfiles.alphacoders.com/161/thumb-161317.png"
       }
     end
 
@@ -48,7 +49,7 @@ if defined?(FightersController)
       describe "with valid params" do
         it "creates a new Fighter" do
           expect {
-            post :create, params: {:figher => valid_attributes}, session: valid_session
+            post :create, params: {:fighter => valid_attributes}, session: valid_session
           }.to change(Fighter, :count).by(1)
         end
 

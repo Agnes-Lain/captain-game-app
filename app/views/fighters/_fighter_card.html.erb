@@ -1,0 +1,12 @@
+  <% fighters.each do |fighter| %>
+    <div class="card small-card my-3" data-fighter-id=<%= fighter.id %>>
+      <%= image_tag fighter.img_url,class:"card-img-top", width:150, height: 150, alt: fighter.name %>
+      <p><%= fighter.name %>:
+        <i class="fas fa-heart"></i> <%= fighter.life_points %> / <i class="fas fa-skull-crossbones"></i> <%= fighter.attack_points %>
+      </p>
+      <%= link_to "More information", fighter_path(fighter) %>
+      <%= link_to "Edit", edit_fighter_path(fighter) %>
+      <%= link_to "Delete", fighter_path(fighter), method: :delete, data: { confirm: "Are you sure?" } %>
+    </div>
+  <% end %>
+

@@ -47,7 +47,7 @@ class FightersController < ApplicationController
   private
 
   def fighter_params
-    params.require(:fighter).permit(:name)
+    params.require(:fighter).permit(:name, :img_url)
   end
 
   def set_fighter
@@ -60,10 +60,22 @@ class FightersController < ApplicationController
   end
 
   def fight(player1, player2)
+    round = 0
     while playter1.isAlive && player2.isAlive
       player1.hit(player2)
       player2.hit(player1)
       #send to front the result at the end of each round
+      respond_to do |format|
+        format.html { render }
+        format.json {
+          render json: {
+            p1_status: player1.fighter_info,
+            pl_attack: player1.one_attack_point,
+            p2_status: player2.fighter_info,
+            p2_attack: player2.one_attack_point,
+           }
+        }
+      end
     end
 
     if player1.isAlive

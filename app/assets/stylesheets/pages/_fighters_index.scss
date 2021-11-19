@@ -1,0 +1,31 @@
+.head-banner {
+  text-align: center;
+  margin-left: auto;
+  margin-top: auto;
+
+  h1 {
+    color: $pink;
+  }
+
+}
+
+.combat-area {
+  h3 {
+    color: $light-blue;
+  };
+  p {
+    padding: 0px;
+    margin: 0px;
+  };
+  h4 {
+    color: $pink;
+  };
+  height: 80vh;
+  overflow-y: scroll;
+  background-position: left top;
+  background-attachment: fixed;
+  background-size: cover;
+  background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url("https://image.freepik.com/free-vector/ancient-roman-arena-gladiators-fight_107791-4455.jpg");
+}
+
+

@@ -19,9 +19,9 @@ IMG_URLS = [
   "https://avatarfiles.alphacoders.com/242/thumb-242408.jpg",
   "https://avatarfiles.alphacoders.com/224/thumb-224885.jpg",
   "https://avatarfiles.alphacoders.com/169/thumb-169080.jpg",
-  "https://avatarfiles.alphacoders.com/300/thumb-300174.jpg",
-  "https://avatarfiles.alphacoders.com/294/thumb-294838.jpg",
-  "https://avatarfiles.alphacoders.com/969/thumb-96900.jpg"
+  "https://avatarfiles.alphacoders.com/913/thumb-91395.jpg",
+  "https://avatarfiles.alphacoders.com/658/thumb-65874.jpg",
+  "https://avatarfiles.alphacoders.com/913/thumb-91394.jpg"
 ]
 
 10.times do |n|
