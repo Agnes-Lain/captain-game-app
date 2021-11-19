@@ -10,6 +10,7 @@ require 'faker'
 
 puts 'Destroying...␥'
 Fighter.destroy_all
+Combat.destroy_all
 
 IMG_URLS = [
   "https://avatarfiles.alphacoders.com/161/thumb-161319.jpg",
@@ -34,3 +35,10 @@ IMG_URLS = [
   puts "#{n} - #{fighter.name} is created!"
 end
 
+puts "add equipments"
+Equipment.create!(name: "knif", attack: 1)
+Equipment.create!(name: "sward", attack: 2)
+Equipment.create!(name: "helmet", protect: 1)
+Equipment.create!(name: "shield", protect: 1)
+
+puts "done"

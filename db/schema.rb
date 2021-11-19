@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_11_18_133350) do
+ActiveRecord::Schema.define(version: 2021_11_19_152141) do
 
   create_table "combats", force: :cascade do |t|
     t.integer "fighter_id", null: false
@@ -20,6 +20,14 @@ ActiveRecord::Schema.define(version: 2021_11_18_133350) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["adversary_id"], name: "index_combats_on_adversary_id"
     t.index ["fighter_id"], name: "index_combats_on_fighter_id"
+  end
+
+  create_table "equipment", force: :cascade do |t|
+    t.string "name"
+    t.integer "protect", default: 0
+    t.integer "attack", default: 0
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "fighters", force: :cascade do |t|
