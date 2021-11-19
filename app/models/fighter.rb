@@ -1,5 +1,5 @@
 class Fighter < ApplicationRecord
-  has_many :combats
+  has_many :combats, dependent: :destroy
   validates :name, :life_points, :attack_points, presence: true
   validates :life_points, :attack_points, numericality: { only_integer: true }
   validates :life_points, inclusion: { in: 30..50 }

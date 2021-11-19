@@ -3,12 +3,19 @@ class FightersController < ApplicationController
 
   def index
     @fighters = Fighter.all
-    # Parameters: {"player1"=>"1 - Ed", "player2"=>"7 - Cammy", "commit"=>"FIGHT!!"}
-    if params[:player1]
+    # Parameters: {"player1"=>"", "equipment1"=>"knif", "player2"=>"", "equipment2"=>"sword", "commit"=>"FIGHT!!"}
+    if params[:player1] && params[:player1]!=""
       @player1 = Fighter.find(params[:player1][0].to_i)
       @player2 = Fighter.find(params[:player2][0].to_i)
+      p1_equip = Equipment.where(name: params["equipment1"])[0]
+      p2_equip = Equipment.where(name: params["equipment2"])[0]
+      @player1.life_points += p1_equip.protect
+      @player1.attack_points += p1_equip.attack
+      @player2.life_points += p2_equip.protect
+      @player2.attack_points += p2_equip.attack
       fight(@player1, @player2)
     end
+    @equipments = Equipment.all
   end
 
   def show
