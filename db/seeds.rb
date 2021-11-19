@@ -37,7 +37,7 @@ end
 
 puts "add equipments"
 Equipment.create!(name: "knif", attack: 1)
-Equipment.create!(name: "sward", attack: 2)
+Equipment.create!(name: "sword", attack: 2)
 Equipment.create!(name: "helmet", protect: 1)
 Equipment.create!(name: "shield", protect: 1)
 
