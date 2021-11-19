@@ -3,11 +3,22 @@ class FightersController < ApplicationController
 
   def index
     @fighters = Fighter.all
-    # Parameters: {"player1"=>"1 - Ed", "player2"=>"7 - Cammy", "commit"=>"FIGHT!!"}
+    # Parameters: {"player1"=>"1", "player2"=>"7"}
     if params[:player1]
-      @player1 = Fighter.find(params[:player1][0].to_i)
-      @player2 = Fighter.find(params[:player2][0].to_i)
+      @player1 = Fighter.find(params[:player1].to_i)
+      @player2 = Fighter.find(params[:player2].to_i)
       fight(@player1, @player2)
+      # render json {
+      #   html_data: render_to_string(partial: "fighter_card", layout: false, locals: {fighters: [@winner, @looser]})
+      # }
+      respond_to do |format|
+        format.html { render }
+        format.json {
+          render json: {
+            card_html: render_to_string(partial: "_fighter_card", layout: false, locals: { fighters: [@winner, @looser] })
+          }
+        }
+      end
     end
   end
 
@@ -65,18 +76,6 @@ class FightersController < ApplicationController
     while player1.isAlive? && player2.isAlive?
       player1.hit(player2)
       player2.hit(player1)
-      #send to front the result at the end of each round
-      # respond_to do |format|
-      #   format.html { render }
-      #   format.json {
-      #     render json: {
-      #       p1_status: player1.fighter_info,
-      #       pl_attack: player1.one_attack_point,
-      #       p2_status: player2.fighter_info,
-      #       p2_attack: player2.one_attack_point,
-      #      }
-      #   }
-      # end
     end
 
     if player1.isAlive?
@@ -94,6 +93,7 @@ class FightersController < ApplicationController
       Combat.create!(fighter_id:player2.id, adversary_id:player1.id, result: 0)
       @equaler = player1
     end
+
   end
 
 end

@@ -1,0 +1,21 @@
+.btn-ghost {
+  margin-left: auto;
+  margin-right: auto;
+  color:$lake;
+  font-family: $headers-font;
+  text-align: center;
+  font-size: 30px;
+  padding: 8px 20px;
+  border: 1px solid $pink;
+  border-radius: 50px;
+  background-color: $pink;
+  &:hover {
+    background-color: transparent;
+    color:$pink;
+    transform: scale(1.1);
+  }
+}
+
+// .btn-ghost:hover {
+//   opacity: 1;
+// }

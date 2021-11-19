@@ -7,15 +7,21 @@
 
   <div class="combat-area p-3" data-controller="combat">
     <div class="row">
+    <%# This is the part to choose the Fighter card %>
       <div class="player1 col">
         <h3>Player 1</h3>
         <%= link_to "Create your own fighter", new_fighter_path, class: "btn btn-warning" %>
         <h4>Choose a fighter:</h4>
         <%= render 'fighter_card', fighters: @fighters[0..(@fighters.length/2)] %>
       </div>
+
+
       <div class="arena col-8">
         <div class="select-bar">
-          <%= render 'select_bar' %>
+          <%#= render 'select_bar' %>
+          <div class="buttonwrap">
+            <a class="btn btn-ghost" data-action='click->combat#fight' href="#">FIGHT!!!!!!</a>
+          </div>
           <% if @winner || @equaler %>
             <div class="result d-flex justify-content-between ">
               <div class="winner">
@@ -30,8 +36,9 @@
             </div>
           <% end %>
         </div>
-
       </div>
+
+      <%# This is the part 2 to choose the Fighter card %>
       <div class="player2 col">
         <h3>Player 2</h3>
         <%= link_to "Create your own fighter", new_fighter_path, class: "btn btn-warning" %>
