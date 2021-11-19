@@ -5,8 +5,8 @@ class FightersController < ApplicationController
     @fighters = Fighter.all
     # Parameters: {"player1"=>"", "equipment1"=>"knif", "player2"=>"", "equipment2"=>"sword", "commit"=>"FIGHT!!"}
     if params[:player1] && params[:player1]!=""
-      @player1 = Fighter.find(params[:player1][0].to_i)
-      @player2 = Fighter.find(params[:player2][0].to_i)
+      @player1 = Fighter.find(params[:player1].split(" ")[0].to_i)
+      @player2 = Fighter.find(params[:player2].split(" ")[0].to_i)
       p1_equip = Equipment.where(name: params["equipment1"])[0]
       p2_equip = Equipment.where(name: params["equipment2"])[0]
       @player1.life_points += p1_equip.protect
