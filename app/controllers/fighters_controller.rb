@@ -12,6 +12,10 @@ class FightersController < ApplicationController
   end
 
   def show
+    @wins = Combat.where(fighter_id: @fighter.id, result: 1).count
+    @fails = Combat.where(fighter_id: @fighter.id, result: -1).count
+    @ties = Combat.where(fighter_id: @fighter.id, result: 0).count
+    @total = @wins + @fails + @ties
   end
 
   def new
