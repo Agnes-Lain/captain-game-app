@@ -5,22 +5,38 @@
     <%= link_to "Back to Home", root_path, class: "btn btn-danger my-3" %>
   </div>
 
-  <div class="combat-area p-3">
+  <div class="combat-area p-3" data-controller="combat">
     <div class="row">
       <div class="player1 col">
         <h3>Player 1</h3>
         <%= link_to "Create your own fighter", new_fighter_path, class: "btn btn-warning" %>
         <h4>Choose a fighter:</h4>
-        <%= render 'fighter_card', fighters: @fighters %>
+        <%= render 'fighter_card', fighters: @fighters[0..(@fighters.length/2)] %>
       </div>
       <div class="arena col-8">
-        <%= render 'search_bar', fighters: @fighters %>
+        <div class="select-bar">
+          <%= render 'select_bar' %>
+          <% if @winner || @equaler %>
+            <div class="result d-flex justify-content-between ">
+              <div class="winner">
+                <h3>Winner is: </h3>
+                <%= render 'fighter_card', fighters:[@winner] %>
+              </div>
+              <div class="looser">
+              <h3>Looser is: </h3>
+                <%= render 'fighter_card', fighters:[@looser] %>
+              </div>
+
+            </div>
+          <% end %>
+        </div>
+
       </div>
       <div class="player2 col">
         <h3>Player 2</h3>
         <%= link_to "Create your own fighter", new_fighter_path, class: "btn btn-warning" %>
         <h4>Choose a fighter:</h4>
-        <%= render 'fighter_card', fighters: @fighters %>
+        <%= render 'fighter_card', fighters: @fighters[(@fighters.length/2)+1..@fighters.length] %>
       </div>
     </div>
   </div>

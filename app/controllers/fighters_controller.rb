@@ -3,9 +3,10 @@ class FightersController < ApplicationController
 
   def index
     @fighters = Fighter.all
-    if params[:combat]
-      @player1 = Fighter.find(params[:combat][:p1_id])
-      @player2 = Fighter.find(params[:combat][:p2_id])
+    # Parameters: {"player1"=>"1 - Ed", "player2"=>"7 - Cammy", "commit"=>"FIGHT!!"}
+    if params[:player1]
+      @player1 = Fighter.find(params[:player1][0].to_i)
+      @player2 = Fighter.find(params[:player2][0].to_i)
       fight(@player1, @player2)
     end
   end
@@ -61,32 +62,37 @@ class FightersController < ApplicationController
 
   def fight(player1, player2)
     round = 0
-    while playter1.isAlive && player2.isAlive
+    while player1.isAlive? && player2.isAlive?
       player1.hit(player2)
       player2.hit(player1)
       #send to front the result at the end of each round
-      respond_to do |format|
-        format.html { render }
-        format.json {
-          render json: {
-            p1_status: player1.fighter_info,
-            pl_attack: player1.one_attack_point,
-            p2_status: player2.fighter_info,
-            p2_attack: player2.one_attack_point,
-           }
-        }
-      end
+      # respond_to do |format|
+      #   format.html { render }
+      #   format.json {
+      #     render json: {
+      #       p1_status: player1.fighter_info,
+      #       pl_attack: player1.one_attack_point,
+      #       p2_status: player2.fighter_info,
+      #       p2_attack: player2.one_attack_point,
+      #      }
+      #   }
+      # end
     end
 
-    if player1.isAlive
-      @winner = Combat.create!(fighter_id:playter1.id, adversary_id:player2.id, result: 1)
-      @looser = Combat.create!(fighter_id:playter2.id, adversary_id:player1.id, result: -1)
-    elsif p2.isAlive
-      @looser = Combat.create!(fighter_id:playter1.id, adversary_id:player2.id, result: -1)
-      @winner = Combat.create!(fighter_id:playter2.id, adversary_id:player1.id, result: 1)
+    if player1.isAlive?
+      winner_record = Combat.create!(fighter_id:player1.id, adversary_id:player2.id, result: 1)
+      @winner = player1
+      looser_record = Combat.create!(fighter_id:player2.id, adversary_id:player1.id, result: -1)
+      @looser = player2
+    elsif player2.isAlive?
+      looser_record = Combat.create!(fighter_id:player1.id, adversary_id:player2.id, result: -1)
+      @looser = player1
+      winner_record = Combat.create!(fighter_id:player2.id, adversary_id:player1.id, result: 1)
+      @winner = player2
     else
-      @equaler = Combat.create!(fighter_id:playter1.id, adversary_id:player2.id, result: 0)
-      Combat.create!(fighter_id:playter2.id, adversary_id:player1.id, result: 0)
+      equaler_record = Combat.create!(fighter_id:player1.id, adversary_id:player2.id, result: 0)
+      Combat.create!(fighter_id:player2.id, adversary_id:player1.id, result: 0)
+      @equaler = player1
     end
   end
 

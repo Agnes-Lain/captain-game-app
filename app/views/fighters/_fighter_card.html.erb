@@ -1,6 +1,11 @@
   <% fighters.each do |fighter| %>
-    <div class="card small-card my-3" data-fighter-id=<%= fighter.id %>>
-      <%= image_tag fighter.img_url,class:"card-img-top", width:150, height: 150, alt: fighter.name %>
+    <div class="card small-card my-3" >
+
+
+    <input type="checkbox" id="CheckFighter<%= fighter.id %>" class="fighter-image" data-fighterId=<%= fighter.id %> data-fightername=<%= fighter.name %> data-combat-target="playerImage" data-action='change->combat#select'/>
+    <label for="CheckFighter<%= fighter.id %>"> <%= image_tag fighter.img_url,class:"card-img-top", width:150, height: 150, alt: fighter.name %></label>
+
+
       <p><%= fighter.name %>:
         <i class="fas fa-heart"></i> <%= fighter.life_points %> / <i class="fas fa-skull-crossbones"></i> <%= fighter.attack_points %>
       </p>
