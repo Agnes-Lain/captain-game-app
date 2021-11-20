@@ -93,11 +93,11 @@ class FightersController < ApplicationController
     if player1.isAlive?
       winner_record = Combat.create!(fighter_id:player1.id, adversary_id:player2.id, result: 1)
       @winner = player1
-      looser_record = Combat.create!(fighter_id:player2.id, adversary_id:player1.id, result: -1)
-      @looser = player2
+      loser_record = Combat.create!(fighter_id:player2.id, adversary_id:player1.id, result: -1)
+      @loser = player2
     elsif player2.isAlive?
-      looser_record = Combat.create!(fighter_id:player1.id, adversary_id:player2.id, result: -1)
-      @looser = player1
+      loser_record = Combat.create!(fighter_id:player1.id, adversary_id:player2.id, result: -1)
+      @loser = player1
       winner_record = Combat.create!(fighter_id:player2.id, adversary_id:player1.id, result: 1)
       @winner = player2
     else

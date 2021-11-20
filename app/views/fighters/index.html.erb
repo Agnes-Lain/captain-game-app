@@ -16,15 +16,16 @@
       <div class="arena col-8">
         <div class="select-bar">
           <%= render 'select_bar' %>
+          <br>
           <% if @winner || @equaler %>
             <div class="result d-flex justify-content-between ">
               <div class="winner">
                 <h3>Winner is: </h3>
                 <%= render 'fighter_card', fighters:[@winner] %>
               </div>
-              <div class="looser">
-              <h3>Looser is: </h3>
-                <%= render 'fighter_card', fighters:[@looser] %>
+              <div class="loser">
+              <h3>Loser is: </h3>
+                <%= render 'fighter_card', fighters:[@loser] %>
               </div>
 
             </div>
