@@ -11,4 +11,20 @@
     <%= link_to "Delete", fighter_path(@fighter), method: :delete, data: { confirm: "Are you sure?" } %>
     <%= link_to "Back to Arena", fighters_path %>
   </div>
+  <hr>
+  <div class="status">
+  <% if @total > 0 && @wins >0 %>
+    <h4>Winning Rate: <%= (@wins.to_f / @total.to_f).round(4) * 100 %>%</h4>
+  <% end %>
+  <% if @wins > 0 %>
+    <h4>Wins count: <%= @wins %></h4>
+  <% end %>
+  <% if @fails > 0 %>
+    <h4>Lost count: <%= @fails %></h4>
+  <% end %>
+  <% if @ties > 0 %>
+    <h4>Ties count: <%= @ties %></h4>
+  <% end %>
+  </div>
+
 </div>

@@ -1,28 +1,38 @@
 class FightersController < ApplicationController
+  include HtmlRender
   before_action :set_fighter, only: [:show, :edit, :update, :destroy]
 
   def index
     @fighters = Fighter.all
-    # Parameters: {"player1"=>"1", "player2"=>"7"}
-    if params[:player1]
-      @player1 = Fighter.find(params[:player1].to_i)
-      @player2 = Fighter.find(params[:player2].to_i)
+    # Parameters: {"player1"=>"", "equipment1"=>"knif", "player2"=>"", "equipment2"=>"sword", "commit"=>"FIGHT!!"}
+    if params[:player1] && params[:player1]!=""
+      @player1 = Fighter.find(params[:player1].split(" ")[0].to_i)
+      @player2 = Fighter.find(params[:player2].split(" ")[0].to_i)
+      p1_equip = Equipment.where(name: params["equipment1"])[0]
+      p2_equip = Equipment.where(name: params["equipment2"])[0]
+      @player1.life_points += p1_equip.protect
+      @player1.attack_points += p1_equip.attack
+      @player2.life_points += p2_equip.protect
+      @player2.attack_points += p2_equip.attack
+
       fight(@player1, @player2)
-      # render json {
-      #   html_data: render_to_string(partial: "fighter_card", layout: false, locals: {fighters: [@winner, @looser]})
-      # }
       respond_to do |format|
         format.html { render }
         format.json {
           render json: {
-            card_html: render_to_string(partial: "_fighter_card", layout: false, locals: { fighters: [@winner, @looser] })
+            fighter_card_html: render_html_content(partial: "fighter_card", layout: false, locals: { fighters: [@winner, @looser] })
           }
         }
       end
     end
+    @equipments = Equipment.all
   end
 
   def show
+    @wins = Combat.where(fighter_id: @fighter.id, result: 1).count
+    @fails = Combat.where(fighter_id: @fighter.id, result: -1).count
+    @ties = Combat.where(fighter_id: @fighter.id, result: 0).count
+    @total = @wins + @fails + @ties
   end
 
   def new
@@ -66,13 +76,12 @@ class FightersController < ApplicationController
     @fighter = Fighter.find(params[:id])
   end
 
-  def set_combat(p1_id, p2_id)
-
-    return @player1, @player
-  end
+  # def set_combat(p1_id, p2_id)
+  #   return @player1, @player
+  # end
 
   def fight(player1, player2)
-    round = 0
+    # round = 0
     while player1.isAlive? && player2.isAlive?
       player1.hit(player2)
       player2.hit(player1)

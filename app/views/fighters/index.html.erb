@@ -17,8 +17,10 @@
 
 
       <div class="arena col-8">
-        <div class="select-bar">
+        <div class="select-bar d-flex justify-content-between">
           <%#= render 'select_bar' %>
+          <%= render 'select_bar' %>
+        </div>
           <div class="buttonwrap">
             <a class="btn btn-ghost" data-action='click->combat#fight' href="#">FIGHT!!!!!!</a>
           </div>
@@ -35,7 +37,6 @@
 
             </div>
           <% end %>
-        </div>
       </div>
 
       <%# This is the part 2 to choose the Fighter card %>

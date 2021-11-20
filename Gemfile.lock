@@ -101,6 +101,7 @@ GEM
       haml (>= 4.0, < 6)
       nokogiri (>= 1.6.0)
       ruby_parser (~> 3.5)
+    htmlrender (0.0.1)
     i18n (1.8.11)
       concurrent-ruby (~> 1.0)
     jbuilder (2.11.3)
@@ -270,6 +271,7 @@ DEPENDENCIES
   font-awesome-sass (~> 5.6.1)
   haml
   haml-rails
+  htmlrender
   jbuilder (~> 2.7)
   listen (~> 3.3)
   puma (~> 5.0)

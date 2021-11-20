@@ -8,8 +8,17 @@
 <div class="container mt-5 intro">
   <h3>How to play?</h3>
   <br>
-  <p class="description">The concept of the game is simple. You can choose a fighter from our fight club, and then you can launch a match. If your fighter win the game:</p>
+  <p class="description">The concept of the game is simple. You can choose a fighter from our fight club by clicking their profile image, and you can add an equipment to renforce your fighter. Then you can launch a match by clicking the button "FIGHT". Enjoy :)</p>
   <br>
+  <h3>Design</h3>
+  <p>It has 3 models, Fighter, Combat, and Equipment, the Fighter manage the CRUD of fighters, so we can create our fighers to fight with each other.</p>
+  <p>The combats table stocks the history of combat for each figher. Each combat can have 3 results: win(1), tie(0), lost(-1) </p>
+  <p>The equipment table stocks different equipments, it may has attack bonus, or protection bonus. When it's attack bonus, it will add attack extra points to the attack points of the fighter him/herself. If it has protection bonus, it will add extra life points for the fighter</p>
+  <br>
+  <h3>Fight function</h3>
+  <p>For each round of attack, each fighter can have a random attack points between 0 to their max attack points(if any attack bonus from weapon, it will add to the maximum attack points). </p>
+  <p>For now it's managed in the backend. I would like to show the resuls of each round of fight, but can't handle one request to have multiple response from simple JS. It would need a websocket broadcasting implementation and I was running out of time. So I was thinking about to handle the fight function directly on the fontend with JS to insert directly a list of result after each round of fight. But finally I didn't have time to change my code to the front, so I leave to the backend so fa... </p>
+  <p>I would like to handle the fetch of fight by JS, and information has been sent to the back index successfully. But I can't render the json with html partial correctly, which cause a lot of time losing on my side. So I leave the form to handle the fight for now...not very good looking, and it causes errors(user can enter information manually, which can cause system error). That's why I would like to hide the form. </p>
 </div>
 
 

@@ -1,9 +1,16 @@
 <%= form_with url: "/fighters", method: :get do |form| %>
-  <%= form.label :player1, "Fighter 1:" %>
-  <%= form.text_field :player1, 'data-combat-target' => 'player1' %>
-  <%= form.label :player2, "Fighter 2:" %>
-  <%= form.text_field :player2, 'data-combat-target' => 'player2' %>
-  <%= form.submit "FIGHT!!" %>
+<div class="playerOne">
+  <%= form.label :player1, "Choose Your Equipment:" %>
+  <%#= form.text_field :player1, 'data-combat-target' => 'player1' %>
+  <%= form.select :equipment1, ["knif", "sword", "helmet", "shield"]%>
+</div>
+
+<div class="playerTwo">
+  <%= form.label :player2, "Choose Your Equipment:" %>
+  <%#= form.text_field :player2, 'data-combat-target' => 'player2' %>
+  <%= form.select :equipment2, ["knif", "sword", "helmet", "shield"]%>
+</div>
+
 <% end %>
 
 
