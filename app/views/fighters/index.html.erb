@@ -17,7 +17,7 @@
         <div class="select-bar">
           <%= render 'select_bar' %>
           <br>
-          <% if @winner || @equaler %>
+          <% if @winner %>
             <div class="result d-flex justify-content-between ">
               <div class="winner">
                 <h3>Winner is: </h3>
@@ -27,7 +27,17 @@
               <h3>Loser is: </h3>
                 <%= render 'fighter_card', fighters:[@loser] %>
               </div>
-
+            </div>
+          <% elsif @equaler  %>
+            <div class="result d-flex justify-content-between ">
+              <div class="winner">
+                <h3> Tie </h3>
+                <%= render 'fighter_card', fighters:[@equaler] %>
+              </div>
+              <div class="loser">
+              <h3> Tie </h3>
+                <%= render 'fighter_card', fighters:[@player2] %>
+              </div>
             </div>
           <% end %>
         </div>

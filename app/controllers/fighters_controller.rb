@@ -67,7 +67,6 @@ class FightersController < ApplicationController
   end
 
   def set_combat(p1_id, p2_id)
-
     return @player1, @player
   end
 
@@ -91,20 +90,21 @@ class FightersController < ApplicationController
     end
 
     if player1.isAlive?
-      winner_record = Combat.create!(fighter_id:player1.id, adversary_id:player2.id, result: 1)
+      save_combat(player1, player2, 1, -1)
       @winner = player1
-      loser_record = Combat.create!(fighter_id:player2.id, adversary_id:player1.id, result: -1)
       @loser = player2
     elsif player2.isAlive?
-      loser_record = Combat.create!(fighter_id:player1.id, adversary_id:player2.id, result: -1)
+      save_combat(player2, player1, 1, -1)
       @loser = player1
-      winner_record = Combat.create!(fighter_id:player2.id, adversary_id:player1.id, result: 1)
       @winner = player2
     else
-      equaler_record = Combat.create!(fighter_id:player1.id, adversary_id:player2.id, result: 0)
-      Combat.create!(fighter_id:player2.id, adversary_id:player1.id, result: 0)
+      save_combat(player1, player2, 0, 0)
       @equaler = player1
     end
   end
 
+  def save_combat(winner, loser, score_win, score_lose)
+    Combat.create!(fighter_id: winner.id, adversary_id: loser.id, result: score_win)
+    Combat.create!(fighter_id: loser.id, adversary_id: winner.id, result: score_lose)
+  end
 end
